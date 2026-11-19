@@ -29,13 +29,13 @@ Then open [http://localhost:4173](http://localhost:4173).
 
 ## Deploy
 
-Any static host can serve `out/`.
+The live site is [maygridmusic.com](https://maygridmusic.com) on Hostinger shared hosting. Hostinger’s Git deploy only pulls files. It does not install or build.
 
-- **Netlify / Cloudflare Pages:** build command `npm run build`, publish directory `out`.
-- **S3 / nginx / GitHub Pages:** upload the contents of `out/` and serve `index.html` at the root. The export uses trailing slashes.
-- Set `NEXT_PUBLIC_SITE_URL` at build time to the real domain (no trailing slash). Canonical URLs, Open Graph, the sitemap, `robots.txt`, and JSON-LD all use it. If it is unset, the build assumes `https://maygridmusic.com`, which is not a confirmed domain.
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs on every push to `main`. It runs `npm ci && npm run build` with `NEXT_PUBLIC_SITE_URL=https://maygridmusic.com`, then force-pushes the contents of `out/` to the root of an orphan branch named `deploy` (`peaceiris/actions-gh-pages`, `publish_branch: deploy`, `force_orphan: true`).
 
-There is no server. The booking action is a WhatsApp link.
+In hPanel, connect the Git repository and set the deployment branch to **`deploy`**, not `main`. The export has no `basePath` and images are unoptimized, so the files work at the domain root. `public/.htaccess` is copied into `out/` and gives clean trailing-slash URLs, a custom 404, a long cache for `/_next/static`, and an HTTPS redirect.
+
+There is no app server. Booking is a WhatsApp link.
 
 ## Design tokens
 
