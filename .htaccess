@@ -1,0 +1,37 @@
+# Apache rules for the Next.js static export on Hostinger.
+# trailingSlash is on, so a route is a directory with index.html
+# (/about/ is served from about/index.html). There is no basePath.
+
+Options -MultiViews
+DirectoryIndex index.html
+RewriteEngine On
+RewriteBase /
+
+# HTTPS. Hostinger may terminate TLS in front and set X-Forwarded-Proto.
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Hashed files under /_next/static can be cached for a year.
+RewriteRule ^_next/static/ - [E=LONGCACHE:1]
+
+<IfModule mod_headers.c>
+  Header set Cache-Control "public, max-age=31536000, immutable" env=LONGCACHE
+  Header set Cache-Control "public, max-age=31536000, immutable" env=REDIRECT_LONGCACHE
+</IfModule>
+
+# Real files and directories are served as they are.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# /about -> /about/ when the export wrote about/index.html.
+RewriteCond %{REQUEST_URI} !/$
+RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+RewriteRule ^(.+?)$ /$1/ [R=301,L]
+
+# /about/ -> about/index.html when DirectoryIndex is not enough.
+RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+RewriteRule ^(.+?)/$ /$1/index.html [L]
+
+ErrorDocument 404 /404.html

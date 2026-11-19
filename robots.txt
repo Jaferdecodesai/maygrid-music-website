@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://maygridmusic.com
+Sitemap: https://maygridmusic.com/sitemap.xml
