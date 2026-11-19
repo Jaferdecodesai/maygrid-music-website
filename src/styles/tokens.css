@@ -1,0 +1,78 @@
+/*
+  MayGrid design tokens.
+
+  This file is the single source of colour, type, spacing, radius, shadow
+  and motion. The public site maps these custom properties into Tailwind
+  in src/app/globals.css. A future admin panel should import this file
+  rather than copying values.
+
+  Names are prefixed --mg- so they do not collide with Tailwind's own
+  generated variables. Components may use either var(--mg-*) or the
+  Tailwind utilities (bg-ink, text-amber, font-display, and so on).
+*/
+
+:root {
+  /* Colour — ink base, paper text, amber as the only bright accent,
+     vermilion used sparingly. Stage photography supplies the rest. */
+  --mg-color-ink: #0c0d0f;
+  --mg-color-ink-soft: #14161a;
+  --mg-color-panel: #1b1d22;
+  --mg-color-paper: #f3eee6;
+  --mg-color-paper-dim: #d9d1c5;
+  --mg-color-muted: #c2b9ad;
+  --mg-color-ink-muted: #5c564e;
+  --mg-color-amber: #f0a010;
+  --mg-color-vermilion: #e05020;
+  --mg-color-vermilion-deep: #9d3510;
+  --mg-color-line: rgba(243, 238, 230, 0.16);
+  --mg-color-line-strong: rgba(243, 238, 230, 0.32);
+
+  /* Type families. --font-*-next are set by next/font on <html>. */
+  --mg-font-display: var(--font-display-next), "Arial Narrow", "Noto Sans Display", Impact, sans-serif;
+  --mg-font-serif: var(--font-serif-next), "Liberation Serif", Georgia, "Times New Roman", serif;
+  --mg-font-body: var(--font-body-next), Inter, "Segoe UI", sans-serif;
+
+  --mg-text-xs: 0.75rem;
+  --mg-text-sm: 0.875rem;
+  --mg-text-base: 1.0625rem;
+  --mg-text-lg: 1.25rem;
+  --mg-text-xl: clamp(1.35rem, 2vw, 1.6rem);
+  --mg-text-2xl: clamp(1.8rem, 3vw, 2.4rem);
+  --mg-text-3xl: clamp(2.4rem, 5vw, 3.8rem);
+  --mg-text-4xl: clamp(3rem, 6.4vw, 5.4rem);
+  --mg-text-hero: clamp(4.35rem, 11.2vw, 8.8rem);
+  --mg-text-price: clamp(5.6rem, 18vw, 13.5rem);
+
+  --mg-leading-display: 0.84;
+  --mg-leading-snug: 1.15;
+  --mg-leading-body: 1.6;
+  --mg-tracking-kicker: 0.16em;
+  --mg-tracking-display: -0.045em;
+
+  /* Spacing */
+  --mg-space-1: 0.25rem;
+  --mg-space-2: 0.5rem;
+  --mg-space-3: 0.75rem;
+  --mg-space-4: 1rem;
+  --mg-space-5: 1.5rem;
+  --mg-space-6: 2rem;
+  --mg-space-7: 3rem;
+  --mg-space-8: 4.5rem;
+  --mg-space-section: clamp(4.25rem, 8.5vw, 7.5rem);
+  --mg-gutter: clamp(1.1rem, 3.2vw, 3.25rem);
+  --mg-header-h: 4.25rem;
+  --mg-measure: 38rem;
+
+  /* Radius — kept tight. This is a venue, not a soft product UI. */
+  --mg-radius-sm: 2px;
+  --mg-radius-md: 4px;
+
+  /* Shadow */
+  --mg-shadow-lift: 0 22px 50px rgba(0, 0, 0, 0.45);
+
+  /* Motion */
+  --mg-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --mg-duration-fast: 150ms;
+  --mg-duration: 280ms;
+  --mg-duration-slow: 400ms;
+}

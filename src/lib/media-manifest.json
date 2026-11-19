@@ -1,0 +1,110 @@
+{
+  "electric": {
+    "width": 1080,
+    "height": 1350,
+    "widths": [
+      480,
+      768,
+      1080
+    ]
+  },
+  "student": {
+    "width": 720,
+    "height": 1280,
+    "widths": [
+      480,
+      720
+    ]
+  },
+  "ensemble": {
+    "width": 720,
+    "height": 1280,
+    "widths": [
+      480,
+      720
+    ]
+  },
+  "portrait": {
+    "width": 1080,
+    "height": 1350,
+    "widths": [
+      480,
+      768,
+      1080
+    ]
+  },
+  "curtain": {
+    "width": 720,
+    "height": 1280,
+    "widths": [
+      480,
+      720
+    ]
+  },
+  "jam": {
+    "width": 720,
+    "height": 1280,
+    "widths": [
+      480,
+      720
+    ]
+  },
+  "duo": {
+    "width": 720,
+    "height": 1280,
+    "widths": [
+      480,
+      720
+    ]
+  },
+  "wide": {
+    "width": 720,
+    "height": 1280,
+    "widths": [
+      480,
+      720
+    ]
+  },
+  "certificates": {
+    "width": 720,
+    "height": 1280,
+    "widths": [
+      480,
+      720
+    ]
+  },
+  "red": {
+    "width": 720,
+    "height": 1280,
+    "widths": [
+      480,
+      720
+    ]
+  },
+  "vocal": {
+    "width": 1080,
+    "height": 1350,
+    "widths": [
+      480,
+      768,
+      1080
+    ]
+  },
+  "vocal2": {
+    "width": 1080,
+    "height": 1350,
+    "widths": [
+      480,
+      768,
+      1080
+    ]
+  },
+  "poster": {
+    "width": 720,
+    "height": 1280,
+    "widths": [
+      480,
+      720
+    ]
+  }
+}

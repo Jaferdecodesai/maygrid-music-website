@@ -1,0 +1,45 @@
+name: Deploy to Hostinger
+
+# Hostinger Git deploy only pulls files. It does not run a build.
+# This workflow builds the static export and force-pushes out/ to the
+# orphan branch `deploy`. Point hPanel at that branch for maygridmusic.com.
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-maygridmusic
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install and build
+        run: npm ci && npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://maygridmusic.com
+
+      - name: Publish out/ to the deploy branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: deploy
+          force_orphan: true
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
